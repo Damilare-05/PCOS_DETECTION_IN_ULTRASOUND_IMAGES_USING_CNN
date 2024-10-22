@@ -9,7 +9,7 @@ from PIL import Image
 # Load the trained model
 @st.cache(allow_output_mutation=True)
 def load_model_file():
-    model = load_model('c:/Users/Dami/Downloads/pcosCNNmodel (1).keras')
+    model = load_model('pcosCNNmodel (2).zip')
     return model
 
 model = load_model_file()
