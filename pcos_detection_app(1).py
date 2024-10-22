@@ -2,6 +2,7 @@ import streamlit as st
 import numpy as np
 import matplotlib.pyplot as plt
 import tensorflow as tf
+from keras.layers import TFSMLayer
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing.image import img_to_array
 from PIL import Image
@@ -12,7 +13,6 @@ import urllib.request
 @st.cache_resource
 def load_model_file():
     model_path = 'pcosCNNmodel (2).zip'  # Use the local path
-    
     if os.path.exists(model_path):
         st.write(f"Model file found at {model_path}")
         file_size = os.path.getsize(model_path)
@@ -22,7 +22,7 @@ def load_model_file():
         return None  # Return None if the file doesn't exist
     
     try:
-        model = load_model(model_path)
+        model = TFSMLayer(model_path, call_endpoint='serving_default')
         st.write("Model loaded successfully!")
     except ValueError as e:
         st.write(f"Error loading the model: {e}")
